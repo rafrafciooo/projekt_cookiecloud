@@ -1,9 +1,8 @@
-import React from 'react'
+"use client";
 
-const SignIn = () => {
-  return (
-    <div>SignIn</div>
-  )
-}
+import AuthForm from "@/components/AuthForm";
+import React, { useEffect } from "react";
 
-export default SignIn
+const SignIn = () => <AuthForm type='sign-in' />;
+
+export default SignIn;
