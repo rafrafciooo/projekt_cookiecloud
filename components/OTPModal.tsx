@@ -11,7 +11,7 @@ import {
 import {
 	InputOTP,
 	InputOTPGroup,
-	InputOTPSeparator,
+
 	InputOTPSlot,
 } from "@/components/ui/input-otp";
 import Image from "next/image";
