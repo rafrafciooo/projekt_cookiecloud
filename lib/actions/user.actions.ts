@@ -119,12 +119,16 @@ export const signOut = async () => {
 export const signIn = async ({ email }: { email: string }) => {
 	try {
 		const existingUser = await getUserByEmail(email);
-		if (existingUser) await sendEmailOTP({ email });
+		if (!existingUser) {
+			return {
+				success: false,
+				error: "Niepoprawny adres e-mail. Spróbuj ponownie.",
+			};
+		}
 
-		return parseStringify({ accountId: existingUser?.accountId });
-
-		return parseStringify({ accountId: null, error: "Błąd przy logowaniu" });
+		await sendEmailOTP({ email });
+		return { success: true, accountId: existingUser.accountId };
 	} catch (error) {
-		handleError(error, "Błąd przy logowaniu");
+		return { success: false, error: "Wystąpił błąd. Spróbuj ponownie." };
 	}
 };

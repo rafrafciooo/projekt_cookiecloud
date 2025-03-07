@@ -68,7 +68,10 @@ const AuthForm = ({ type }: { type: FormType }) => {
 							email: values.email,
 					  })
 					: await signIn({ email: values.email });
-
+if (!user.success) {
+	setErrorMessage(user.error);
+	return
+} 
 			setAccountId(user.accountId);
 		} catch (error) {
 			setErrorMessage("Wystąpił błąd podczas tworzenia konta");
